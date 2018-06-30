@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'jquery-rails'
 gem 'haml-rails' #generating HTML
 gem 'bootstrap-sass' #Organise page content
 gem 'pry-rails' #Debugging
