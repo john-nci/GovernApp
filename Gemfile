@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'haml-rails' #generating HTML
 gem 'bootstrap-sass' #Organise page content
 gem 'pry-rails' #Debugging
+gem 'devise'
 
 
 group :development, :test do
