@@ -18,15 +18,6 @@ ActiveRecord::Schema.define(version: 2018_07_02_225433) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.string "title"
-    t.string "kind"
-    t.integer "poll_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["poll_id"], name: "index_questions_on_poll_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
