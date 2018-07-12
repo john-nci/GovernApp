@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
     end
     
     def set_poll
-      @Poll = Poll.find params[:poll_id]
+      @poll = Poll.find params[:poll_id]
     end
   
 end
