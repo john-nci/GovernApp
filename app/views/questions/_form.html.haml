@@ -19,9 +19,9 @@
         =f.radio_button :kind, option[1]
         =option[0]
         
-  -f.fields_for :possible_answers do |c|
-    %p 
-      =c.text_field :title, class: "form-control", placeholder: "Please enter an answer"
+    =f.fields_for :possible_answers do |c|
+      %p 
+        =c.text_field :title, class: "form-control", placeholder: "Up the Ra!!!"
 
   %p
     = f.submit 'Save', class: "btn btn-primary"
