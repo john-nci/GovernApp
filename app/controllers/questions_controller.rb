@@ -51,8 +51,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to @poll, notice: 'Question was successfully deleted.' }
     end
   end
 
