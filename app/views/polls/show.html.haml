@@ -9,11 +9,11 @@
   = link_to 'Answer', new_poll_reply_path(@poll), class: "btn btn-primary"
 
 %h2 Description
-
-%h2 Questions
 =@poll.description
 
-%ul
+%h2 Questions
+
+%ol
   -@poll.questions.each do |question|
     %li
       =question.title
