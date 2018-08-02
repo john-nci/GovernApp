@@ -18,6 +18,7 @@ gem 'haml-rails' #generating HTML
 gem 'bootstrap-sass' #Organise page content
 gem 'pry-rails' #Debugging
 gem 'devise'
+gem 'bootstrap', '~> 4.1.3'
 
 
 group :development, :test do
