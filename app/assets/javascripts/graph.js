@@ -1,32 +1,32 @@
-// Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+var Graph = function(selector, data, kind) {
+  // jquery selector
+  this.selector = selector;
+  // Takes the data
+  this.data = data;
+  // Will allow me to later define a method which will determine what kind of chart I'll use from the Google chart lib
+  this.kind = kind;
+};
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+Graph.prototype.getData = function() {
+  var _this = this;
+  var dataWithCaptions = this.data.data.map(function(element, index, array) {
+    return [ _this.data.x_axis.series[index], element ];
+  });
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+  return google.visualization.arrayToDataTable([
+    [ this.data.x_axis.legend, this.data.y_axis.legend ],
+  ].concat(dataWithCaptions));
+};
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
-        ]);
+Graph.prototype.render = function() {
+    // Set chart options
+    var options = {'title': this.data.title,
+                   'width':400,
+                   'height':300};
 
-        // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('tab-results'));
-        chart.draw(data, options);
-      }
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart($(this.selector)[0]);
+    chart.draw(this.getData(), options);
+  };
+    
+Graph.instances = [];

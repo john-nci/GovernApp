@@ -1,0 +1,17 @@
+#answers-per-question 
+    -@poll.questions.each do |question|
+        %div{id: "#answers-per-question-#{question.id}"}
+            :javascript
+                var selector = "answers-per-question-#{question.id}";
+                var data = #{question.gather_votes_for_graph};
+                Graph.instances.push(new Graph(selector, data, "pie"));
+
+
+-content_for :footer do
+    :javascript
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function() {
+          Graph.instances.forEach(function(instance) {
+            instance.render();
+          });
+        });
