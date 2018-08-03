@@ -1,0 +1,10 @@
+<h1>
+  <%= @poll.title %>
+</h1>
+<%= form_for [ @poll, @reply ] do |f| %>
+  <%= f.fields_for :answers do |c| %>
+    <%= render c.object.question.kind, c: c %>
+  <% end %>
+  <p></p>
+  <%= f.submit "Cast Your Vote!", class: "btn btn-primary" %>
+<% end %>

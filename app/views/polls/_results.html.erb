@@ -1,19 +1,29 @@
-//Attempted to gather data from the answers in teh correspoonding table and display actual results rather than hardscoded values
-
-#answers-per-question 
-    -@poll.questions.each do |question|
-        %div{id: "#answers-per-question-#{question.id}"}
-            :javascript
+<!--/Attempted to gather data from the answers in teh correspoonding table and display actual results rather than hardscoded values
+-->
+<div id="answers-per-question">
+  <% @poll.questions.each do |question| %>
+    <div id="#answers-per-question-<%= question.id %>">
+      <script>
+        
                 var selector = "answers-per-question-#{question.id}";
                 var data = #{question.gather_votes_for_graph};
                 Graph.instances.push(new Graph(selector, data, "pie"));
 
 
--content_for :footer do
-    :javascript
+
+      </script>
+    </div>
+  <% end %>
+</div>
+<% content_for :footer do %>
+  <script>
+    
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(function() {
           Graph.instances.forEach(function(instance) {
             instance.render();
           });
         });
+
+  </script>
+<% end %>

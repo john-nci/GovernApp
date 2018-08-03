@@ -1,0 +1,37 @@
+<h1>Questions For This Poll</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Kind</th>
+      <th scope="col">Poll</th>
+      <th scope="col">View</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @poll.questions.each do |question| %>
+      <tr>
+        <th scope="row">
+          <%= question.title %>
+        </th>
+        <td>
+          <%= question.kind %>
+        </td>
+        <td>
+          <%= question.poll_id %>
+        </td>
+        <td>
+          <%= link_to 'Show', [ @poll, question ], class: "btn btn-primary btn-sm" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_poll_question_path(@poll, question), class: "btn btn-primary btn-sm" %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', [ @poll, question ], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
