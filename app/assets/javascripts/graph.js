@@ -1,32 +1,31 @@
-var Graph = function(selector, data, kind) {
-  // jquery selector
-  this.selector = selector;
-  // Takes the data
-  this.data = data;
-  // Will allow me to later define a method which will determine what kind of chart I'll use from the Google chart lib
-  this.kind = kind;
-};
+//Google Charts API
 
-Graph.prototype.getData = function() {
-  var _this = this;
-  var dataWithCaptions = this.data.data.map(function(element, index, array) {
-    return [ _this.data.x_axis.series[index], element ];
-  });
+// Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-  return google.visualization.arrayToDataTable([
-    [ this.data.x_axis.legend, this.data.y_axis.legend ],
-  ].concat(dataWithCaptions));
-};
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
 
-Graph.prototype.render = function() {
-    // Set chart options
-    var options = {'title': this.data.title,
-                   'width':400,
-                   'height':300};
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
 
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart($(this.selector)[0]);
-    chart.draw(this.getData(), options);
-  };
-    
-Graph.instances = [];
+        // Create the data table.
+        var data = new google.visualization.arrayToDataTable([
+          ['Bill', 'In Favour', 'Against'],
+          ['Bill 1', 1000, 400],
+          ['Bill 2', 1170, 460],
+          ['Bill 3', 660, 1120],
+          ['Bill 4', 1030, 540]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Results Of The Vote',
+                       'width':500,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.ColumnChart(document.getElementById('tab-results'));
+        chart.draw(data, options);
+      }
